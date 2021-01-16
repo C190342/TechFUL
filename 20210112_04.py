@@ -1,3 +1,64 @@
+total_apples, get_apples = [int(x) for x in input().split()]
+s = input()
+
+count_r = s.count('R')
+if count_r < get_apples:
+  print(-1)
+else:
+  left_ps = 0
+  right_ps = len(s) - 1
+
+  left_wl = 0
+  right_wl = 0
+
+  eat_apple = 0
+  turn_right = False
+  total_steps = 0
+
+  while eat_apple < get_apples :    
+    if turn_right == False:
+      total_steps = total_steps + 1;
+      if s[left_ps] == "R":
+        eat_apple = eat_apple + 1
+        total_steps = total_steps - right_wl;  
+        right_ps = right_ps - right_wl
+        right_wl = 0      
+        left_ps += 1   
+        left_wl = 0        
+      else:
+        left_wl += 1
+        left_ps += 1
+        turn_right = True
+        continue
+
+    if turn_right == True:
+      total_steps = total_steps + 1;
+      if s[right_ps] == "R":
+        eat_apple = eat_apple + 1
+        total_steps = total_steps - left_wl;
+        left_ps = left_ps - left_wl
+        left_wl = 0
+        right_ps -= 1        
+        right_wl = 0
+      else:
+        right_wl += 1
+        right_ps -= 1
+        turn_right = False
+
+  print(total_steps)
+
+
+
+
+
+
+
+
+
+
+
+
+# pass 3 test case 1, 3, 4
 sum_apple, take_apple = [int(x) for x in input().split()]
 s = input()
 tr_in = [i for i in s]
